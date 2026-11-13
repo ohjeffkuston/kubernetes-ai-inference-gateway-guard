@@ -1,0 +1,43 @@
+service: {name: demo}
+gateway:
+  api_version: v1beta1
+  inference_extension: false
+  tls: false
+  authentication: none
+  authorization: allow-all
+routing:
+  strategy: round-robin
+  live_metrics: false
+  model_identity_required: false
+  criticality_classes: false
+  batch_isolated: false
+  priority_cap: 1000
+  fallback_depth: 4
+protection:
+  global_rate_limit_rpm: 0
+  local_burst_rps: 0
+  max_request_tokens: 1000000
+  max_concurrent_requests: 10000
+  request_timeout_seconds: 900
+  stream_idle_timeout_seconds: 900
+  circuit_breaker: false
+  retry_budget_percent: 100
+  retry_non_idempotent: true
+security:
+  prompt_payload_logging: true
+  redaction: false
+  secrets_from_external_store: false
+  egress_allowlist: false
+  model_endpoint_identity: false
+  signed_images: false
+telemetry: {opentelemetry: false, bounded_attributes: false, metrics: []}
+reliability:
+  minimum_replicas: 1
+  zone_spread: false
+  pdb: false
+  overload_shedding: false
+  slo: {availability_percent: 90, p95_latency_ms: 99999}
+validation:
+  load_test: {passed: false, last_run: 2025-01-01, overload_rejection_accuracy_percent: 0, scenarios: []}
+  rollout: {audit_first: false, canary_percent: 100, automatic_rollback: false, human_approval: false}
+operations: {}

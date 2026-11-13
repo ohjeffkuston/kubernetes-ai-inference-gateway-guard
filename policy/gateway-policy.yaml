@@ -1,0 +1,22 @@
+max_priority_cap: 100
+max_global_rate_limit_rpm: 5000
+max_local_burst_rps: 100
+max_request_tokens: 16384
+max_concurrent_requests: 256
+max_request_timeout_seconds: 120
+max_stream_idle_timeout_seconds: 30
+max_retry_budget_percent: 5
+minimum_availability_percent: 99.9
+max_p95_latency_ms: 2500
+max_evidence_age_days: 30
+minimum_overload_rejection_accuracy_percent: 95
+max_canary_percent: 10
+required_metrics:
+  - inference_request_duration_ms
+  - inference_queue_duration_ms
+  - inference_input_tokens
+  - inference_output_tokens
+  - inference_backend_saturation
+  - inference_error_total
+  - inference_fallback_total
+  - inference_rate_limited_total

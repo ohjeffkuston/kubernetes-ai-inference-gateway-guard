@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e . pytest
+      - run: pytest
+      - run: python -m compileall -q src tests
+      - run: inference-gateway-guard samples/compliant-gateway.yaml --as-of 2026-11-13
+      - run: inference-gateway-guard samples/unsafe-gateway.yaml --as-of 2026-11-13 --output json || test $? -eq 2

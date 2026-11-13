@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f7f9fc"/>
+  <text x="800" y="76" text-anchor="middle" font-family="Arial" font-size="38" font-weight="700" fill="#13213c">Kubernetes AI Inference Gateway Guard</text>
+  <text x="800" y="116" text-anchor="middle" font-family="Arial" font-size="21" fill="#52617a">Deterministic evidence before production gateway rollout</text>
+  <g font-family="Arial">
+    <rect x="80" y="250" width="300" height="300" rx="24" fill="#ffffff" stroke="#4b6bfb" stroke-width="4"/>
+    <text x="230" y="310" text-anchor="middle" font-size="25" font-weight="700" fill="#13213c">GitOps evidence</text>
+    <text x="230" y="365" text-anchor="middle" font-size="20" fill="#52617a">Gateway + InferencePool</text>
+    <text x="230" y="405" text-anchor="middle" font-size="20" fill="#52617a">limits + fallback + SLO</text>
+    <text x="230" y="445" text-anchor="middle" font-size="20" fill="#52617a">security + telemetry</text>
+    <text x="230" y="485" text-anchor="middle" font-size="20" fill="#52617a">fresh load-test evidence</text>
+
+    <rect x="520" y="190" width="560" height="420" rx="28" fill="#13213c"/>
+    <text x="800" y="255" text-anchor="middle" font-size="28" font-weight="700" fill="#ffffff">18-control deterministic guard</text>
+    <text x="800" y="315" text-anchor="middle" font-size="20" fill="#c8d5ff">Inference-aware routing · rate limits · token budgets</text>
+    <text x="800" y="355" text-anchor="middle" font-size="20" fill="#c8d5ff">timeouts · retry budget · circuit breaker · privacy</text>
+    <text x="800" y="395" text-anchor="middle" font-size="20" fill="#c8d5ff">OpenTelemetry · SLO · overload evidence · canary</text>
+    <rect x="620" y="465" width="145" height="72" rx="18" fill="#1f9d67"/>
+    <rect x="777" y="465" width="145" height="72" rx="18" fill="#f0a72e"/>
+    <rect x="934" y="465" width="145" height="72" rx="18" fill="#d94b58"/>
+    <text x="692" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">PASS</text>
+    <text x="849" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">REVIEW</text>
+    <text x="1006" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">BLOCK</text>
+
+    <rect x="1220" y="250" width="300" height="300" rx="24" fill="#ffffff" stroke="#1f9d67" stroke-width="4"/>
+    <text x="1370" y="310" text-anchor="middle" font-size="25" font-weight="700" fill="#13213c">Inference gateway</text>
+    <text x="1370" y="365" text-anchor="middle" font-size="20" fill="#52617a">Gateway API extension</text>
+    <text x="1370" y="405" text-anchor="middle" font-size="20" fill="#52617a">queue-aware endpoints</text>
+    <text x="1370" y="445" text-anchor="middle" font-size="20" fill="#52617a">GPU model pools</text>
+    <text x="1370" y="485" text-anchor="middle" font-size="20" fill="#52617a">safe fallback + shedding</text>
+
+    <path d="M380 400H500" stroke="#4b6bfb" stroke-width="8" marker-end="url(#arrow)"/>
+    <path d="M1080 400H1200" stroke="#1f9d67" stroke-width="8" marker-end="url(#arrow)"/>
+    <path d="M1370 570C1370 760 800 760 800 630" fill="none" stroke="#7c8aa5" stroke-width="6" stroke-dasharray="14 10" marker-end="url(#arrow)"/>
+    <text x="1110" y="760" text-anchor="middle" font-size="20" fill="#52617a">bounded OpenTelemetry + load evidence feedback</text>
+  </g>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#52617a"/></marker></defs>
+</svg>

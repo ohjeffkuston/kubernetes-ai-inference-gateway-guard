@@ -1,0 +1,77 @@
+service:
+  name: support-assistant
+  owner: ai-platform
+  environment: production
+  service_tier: tier-1
+gateway:
+  api_version: gateway.networking.k8s.io/v1
+  inference_extension: true
+  inference_pool: llama-pool
+  inference_model: support-llm
+  tls: true
+  authentication: oidc
+  authorization: deny-by-default
+routing:
+  strategy: queue-aware
+  live_metrics: true
+  model_identity_required: true
+  criticality_classes: true
+  batch_isolated: true
+  priority_cap: 80
+  fallback_model: support-llm-small
+  fallback_compatible: true
+  fallback_depth: 1
+protection:
+  global_rate_limit_rpm: 1200
+  local_burst_rps: 50
+  max_request_tokens: 8192
+  max_concurrent_requests: 64
+  request_timeout_seconds: 60
+  stream_idle_timeout_seconds: 15
+  circuit_breaker: true
+  retry_budget_percent: 3
+  retry_non_idempotent: false
+security:
+  prompt_payload_logging: false
+  redaction: true
+  secrets_from_external_store: true
+  egress_allowlist: true
+  model_endpoint_identity: true
+  signed_images: true
+telemetry:
+  opentelemetry: true
+  bounded_attributes: true
+  metrics:
+    - inference_request_duration_ms
+    - inference_queue_duration_ms
+    - inference_input_tokens
+    - inference_output_tokens
+    - inference_backend_saturation
+    - inference_error_total
+    - inference_fallback_total
+    - inference_rate_limited_total
+reliability:
+  minimum_replicas: 3
+  zone_spread: true
+  pdb: true
+  overload_shedding: true
+  slo:
+    availability_percent: 99.95
+    p95_latency_ms: 1800
+    error_budget_policy: freeze rollouts at 50 percent budget burn
+validation:
+  load_test:
+    passed: true
+    last_run: 2026-11-10
+    overload_rejection_accuracy_percent: 98
+    scenarios: [burst, backend_failure, fallback, rate_limit, zone_loss]
+  rollout:
+    audit_first: true
+    canary_percent: 5
+    automatic_rollback: true
+    human_approval: true
+operations:
+  runbook: docs/runbooks/inference-gateway.md
+  dashboard: dashboards/inference-gateway
+  alert_route: ai-platform-oncall
+  review_owner: platform-sre
